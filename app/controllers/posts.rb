@@ -12,5 +12,10 @@ Operations:
 =end
 
 get '/posts' do
-  
+  erb :index
+end
+
+get '/posts/display_one' do
+  @post = Post.find_by_title(params[:title])
+  erb :display_one_post
 end
