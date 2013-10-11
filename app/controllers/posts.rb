@@ -21,21 +21,37 @@ end
 
 post '/posts/create' do
 
-  tags = params[:tag].split(", ")
-  copy = tags.dup
-  until copy.length == 0
-    Tag.create(name: copy.pop)
-  end
+  @post = Post.create(title: params[:title], body: params[:body])
 
-  tags.each do |tag|
-    source = Tag.find_by_name(tag)
-    source.id
+  tags_original = params[:tag].split(", ")
+  tags_copy = tags_original.dup
+
+  while tags_copy.length > 0
+    tag_name = tags_copy.pop.downcase
+    if Tag.find_by_name(tag_name)
+      tag = Tag.find_by_name(tag_name)
+
+    else
+      tag = Tag.create(name: tag_name)
+    end
+    PostTag.create(post_id: @post.id, tag_id: tag.id)
   end
-  post = Post.create(title: params[:title], body: params[:body])
-  erb :index
+  
+  @tags = @post.find_related_tags
+  erb :display_one_post
 end
 
-get '/posts/display_one' do
-  @post = Post.find_by_title(params[:title])
+get '/posts/display' do
+  @post = Post.find_by_title("Be the space!")
+  @tags = @post.find_related_tags
   erb :display_one_post
+end
+
+get '/posts/search' do
+  @all = Post.all 
+  erb :search_post
+end
+
+post '/posts/search' do
+  @post = Post.find_by_title(params[:title])
 end
