@@ -1,0 +1,32 @@
+<div class="container">
+  <table>
+    <h4>Enjoy the post!</h4>
+
+    <tr>
+      <td>Title:</td>
+      <th><code><%= @post.title %></code></th>
+    </tr>
+
+    <tr>
+      <td>Body:</td>
+      <td><code><%= @post.body %></code></td>
+    </tr>
+
+    <tr>
+      <td>Tags:</td>
+      <td><code><%= @tags %></code></td>
+    </tr>
+
+    <tr>
+      <td>Created:</td>
+      <td><code><%= @post.created_at %></code></td>
+    </tr>
+
+    <tr>
+      <td>Last updated:</td>
+      <td><code><%= @post.updated_at %></code></td>
+    </tr>
+  </table>
+  <br><br>
+  <a href="/">Return to homepage</a>
+</div>

@@ -38,20 +38,24 @@ post '/posts/create' do
   end
   
   @tags = @post.find_related_tags
-  erb :display_one_post
+  erb :display_post
 end
 
 get '/posts/display' do
-  @post = Post.find_by_title("Be the space!")
+  @post = Post.find(params[:id])
   @tags = @post.find_related_tags
-  erb :display_one_post
+  erb :display_post
 end
 
-get '/posts/search' do
+get '/posts/search_to_display' do
   @all = Post.all 
-  erb :search_post
+  erb :post_search_to_display
 end
 
-post '/posts/search' do
+post '/posts/search_to_display' do
   @post = Post.find_by_title(params[:title])
+end
+
+get '/posts/update' do
+
 end

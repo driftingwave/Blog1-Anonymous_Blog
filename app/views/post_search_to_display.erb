@@ -1,0 +1,13 @@
+<div class="container">
+  
+  <%= erb :partial_list_before_search %>
+
+  <h4>Which post would you like to update?</h4>
+  
+  <form id="select_id_to_display" method="get" action="/posts/display">
+    Enter a number:
+    <input type="text" name="id">
+    <input type="submit" name="Submit">
+  </form>
+
+</div>

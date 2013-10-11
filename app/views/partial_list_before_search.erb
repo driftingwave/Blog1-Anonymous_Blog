@@ -1,0 +1,7 @@
+  <h4>Posts</h4>
+  
+  <ul style="list-style: none;">
+    <% @all.each do |post| %>
+      <li><%= post.id.to_s + ". " + post.title %></li>
+    <% end %>
+  </ul>
